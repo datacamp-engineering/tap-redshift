@@ -253,11 +253,11 @@ def open_connection(config):
     password = config['password']
 
     connection = psycopg2.connect(
-        host=host[0],
-        port=port[0],
-        dbname=dbname[0],
-        user=user[0],
-        password=password)
+        host=str(host[0]).replace(',',''),
+        port=int(str(port[0]).replace(',','')),
+        dbname=str(dbname[0]).replace(',',''),
+        user=str(user[0]).replace(',',''),
+        password=str(password).replace(',',''))
     LOGGER.info('Connected to Redshift')
     return connection
 
